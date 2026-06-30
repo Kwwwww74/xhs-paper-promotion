@@ -64,9 +64,9 @@ xhs-paper-promotion/
 ├── README.md
 ├── README.zh-CN.md
 ├── package.json
-├── .env.example
-├── config.toml.example
-├── auth.json.example
+├── .env
+├── config.toml
+├── auth.json
 ├── agents/
 │   └── openai.yaml
 ├── references/
@@ -74,9 +74,9 @@ xhs-paper-promotion/
 │   ├── llm-agent-positioning.md
 │   ├── paper-analysis.md
 │   └── xhs-style.md
-├── examples/
+├── inputs/
 │   ├── paper.md
-│   └── link-only.md
+│   └── link.md
 └── scripts/
     └── generate-xhs.mjs
 ```
