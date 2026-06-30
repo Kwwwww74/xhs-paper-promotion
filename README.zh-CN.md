@@ -300,7 +300,3 @@ PDF 链接暂不自动解析。如果你只有 PDF，建议把摘要、Introduct
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Kwwwww74/xhs-paper-promotion&type=Date)](https://star-history.com/#Kwwwww74/xhs-paper-promotion&Date)
-
-## 📄 License
-
-MIT
