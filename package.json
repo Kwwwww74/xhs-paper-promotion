@@ -1,0 +1,12 @@
+{
+  "name": "xhs-paper-promotion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-xhs.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
