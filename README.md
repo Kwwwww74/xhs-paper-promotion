@@ -64,7 +64,6 @@ xhs-paper-promotion/
 ├── README.md
 ├── README.zh-CN.md
 ├── package.json
-├── .env
 ├── config.toml
 ├── auth.json
 ├── agents/
