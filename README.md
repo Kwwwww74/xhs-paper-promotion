@@ -1,10 +1,14 @@
 <div align="center">
 
-# xhs-paper-promotion
+# 🍠 xhs-paper-promotion
 
 **English** | [中文](./README.zh-CN.md)
 
 Turn AI / LLM / Agent / RAG / machine learning papers into Chinese Xiaohongshu-style paper explainer posts.
+
+[![GitHub stars](https://img.shields.io/github/stars/Kwwwww74/xhs-paper-promotion?style=social)](https://github.com/Kwwwww74/xhs-paper-promotion/stargazers)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
 </div>
 
@@ -13,7 +17,7 @@ This project can be used in two ways:
 - as a Codex Skill
 - as a standalone Node.js CLI powered by an OpenAI-compatible Responses API
 
-## Features
+## ✨ Features
 
 - Generate long-form Xiaohongshu paper breakdown posts
 - Support paper title, abstract, introduction, conclusion, and experiment results
@@ -23,7 +27,7 @@ This project can be used in two ways:
 - Support Codex-style config from `~/.codex/config.toml` and `~/.codex/auth.json`
 - Include safety rules to avoid overstating model capability, AGI claims, deployment readiness, or unsupported benchmark results
 
-## Output Style
+## 📝 Output Style
 
 The default output follows this structure:
 
@@ -52,7 +56,7 @@ Main title: ...
 Subtitle: ...
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 xhs-paper-promotion/
@@ -77,14 +81,14 @@ xhs-paper-promotion/
     └── generate-xhs.mjs
 ```
 
-## Requirements
+## ⚙️ Requirements
 
 - Node.js 18+
 - An API key for an OpenAI-compatible Responses API
 
 No npm dependencies are required.
 
-## Use as a Codex Skill
+## 🧩 Use as a Codex Skill
 
 Install the folder to:
 
@@ -122,7 +126,7 @@ https://arxiv.org/abs/xxxx.xxxxx
 Please generate a Xiaohongshu paper explainer post.
 ```
 
-## Use as a CLI
+## 🚀 Use as a CLI
 
 Generate from an input file:
 
@@ -167,7 +171,7 @@ Use stdin:
 cat examples/paper.md | npm run generate
 ```
 
-## API Configuration
+## 🔐 API Configuration
 
 ### Option A: `.env`
 
@@ -246,7 +250,7 @@ Example `auth.json`:
 
 If both `.env` and Codex-style config exist, `.env` takes priority.
 
-## Input Examples
+## 📌 Input Examples
 
 Full paper input:
 
@@ -287,13 +291,17 @@ Recommended URL types:
 
 PDF URLs are not automatically parsed. If you only have a PDF, paste the abstract, introduction, conclusion, or experiment results into the input file.
 
-## Safety Notes
+## 🛡️ Safety Notes
 
 - Do not commit `.env`, `auth.json`, `config.toml`, or real API keys.
 - Do not invent authors, institutions, benchmarks, metrics, code availability, or open-source status.
 - Do not claim AGI, consciousness, autonomous thinking, or real-world deployment readiness unless the paper explicitly supports it.
 - For benchmark results, preserve the task, dataset, and evaluation setting.
 
-## License
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Kwwwww74/xhs-paper-promotion&type=Date)](https://star-history.com/#Kwwwww74/xhs-paper-promotion&Date)
+
+## 📄 License
 
 MIT
