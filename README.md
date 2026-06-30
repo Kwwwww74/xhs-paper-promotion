@@ -1,33 +1,210 @@
 # xhs-paper-promotion
 
-把 AI / LLM / Agent / RAG / 机器学习论文转成可信的小红书推广文案。
+Turn AI / LLM / Agent / RAG / machine learning papers into Chinese Xiaohongshu-style paper explainer posts.
 
-这个目录既可以作为 Codex skill 使用，也可以通过 OpenAI API key 独立运行。
+This project can be used in two ways:
 
-## Codex Skill 调用
+- as a Codex Skill
+- as a standalone Node.js CLI powered by an OpenAI-compatible Responses API
 
-安装到：
+## Features
+
+- Generate long-form Xiaohongshu paper breakdown posts
+- Support paper title, abstract, introduction, conclusion, and experiment results
+- Support paper links such as arXiv abstract pages, project pages, and technical blogs
+- Support Codex Skill invocation with `$xhs-paper-promotion`
+- Support `.env` API configuration
+- Support Codex-style config from `~/.codex/config.toml` and `~/.codex/auth.json`
+- Include safety rules to avoid overstating model capability, AGI claims, deployment readiness, or unsupported benchmark results
+
+## Output Style
+
+The default output follows this structure:
+
+```text
+[Source] published a new paper in [field]:
+《Paper Title》
+
+One-sentence summary:
+This paper is not just about ..., but about solving a more practical problem: ...
+
+🙋 Problem background
+
+🐳 What the paper does
+
+🌟 Key design
+
+🍒 Paper results
+
+⛰️ Product / research meaning
+
+Tags:
+#...
+
+Cover text:
+Main title: ...
+Subtitle: ...
+```
+
+## Project Structure
+
+```text
+xhs-paper-promotion/
+├── SKILL.md
+├── README.md
+├── README.zh-CN.md
+├── package.json
+├── .env.example
+├── config.toml.example
+├── auth.json.example
+├── agents/
+│   └── openai.yaml
+├── references/
+│   ├── academic-safety.md
+│   ├── llm-agent-positioning.md
+│   ├── paper-analysis.md
+│   └── xhs-style.md
+├── examples/
+│   ├── paper.md
+│   └── link-only.md
+└── scripts/
+    └── generate-xhs.mjs
+```
+
+## Requirements
+
+- Node.js 18+
+- An API key for an OpenAI-compatible Responses API
+
+No npm dependencies are required.
+
+## Use as a Codex Skill
+
+Install the folder to:
 
 ```bash
 ~/.codex/skills/xhs-paper-promotion
 ```
 
-然后在 Codex 里输入：
+Then restart Codex or open a new thread.
+
+Example:
 
 ```text
 Use $xhs-paper-promotion
 
-下面是论文内容，请按“来源 + 论文标题 + 一句话概括 + 问题背景 + 方法解释 + 关键设计 + 论文结果 + 产品/研究意义”的小红书论文拆解模板生成文案：
+Please turn this paper into a Xiaohongshu-style paper explainer post:
+
+Paper title:
+...
+
+Abstract:
+...
+
+Results:
 ...
 ```
 
-## API 独立调用
+You can also provide a paper link:
 
-你可以用两种方式配置 API。
+```text
+Use $xhs-paper-promotion
 
-### 方式 A：模仿 Codex 配置读取
+Paper link:
+https://arxiv.org/abs/xxxx.xxxxx
 
-把示例配置复制到 Codex 配置目录：
+Please generate a Xiaohongshu paper explainer post.
+```
+
+## Use as a CLI
+
+Generate from an input file:
+
+```bash
+npm run generate -- examples/paper.md
+```
+
+Generate from a paper link:
+
+```bash
+npm run generate -- --url https://arxiv.org/abs/xxxx.xxxxx
+```
+
+Generate from a link-only example file:
+
+```bash
+npm run generate -- examples/link-only.md
+```
+
+Save output to a file:
+
+```bash
+npm run generate -- examples/paper.md --out outputs/post.md
+```
+
+Save output from a URL:
+
+```bash
+npm run generate -- --url https://arxiv.org/abs/xxxx.xxxxx --out outputs/post.md
+```
+
+Run the script directly:
+
+```bash
+node scripts/generate-xhs.mjs examples/paper.md
+node scripts/generate-xhs.mjs --url https://arxiv.org/abs/xxxx.xxxxx
+```
+
+Use stdin:
+
+```bash
+cat examples/paper.md | npm run generate
+```
+
+## API Configuration
+
+### Option A: `.env`
+
+Create a local `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env`:
+
+```env
+OPENAI_API_KEY=sk-your-api-key-here
+OPENAI_MODEL=gpt-5.5
+OPENAI_API_BASE=https://api.openai.com/v1
+OPENAI_WIRE_API=responses
+```
+
+For an OpenAI-compatible gateway:
+
+```env
+OPENAI_API_KEY=sk-your-api-key-here
+OPENAI_MODEL=gpt-5.4
+OPENAI_API_BASE=https://vip.zxyfedu.com
+OPENAI_WIRE_API=responses
+```
+
+The script calls:
+
+```text
+{OPENAI_API_BASE}/responses
+```
+
+### Option B: Codex-style config
+
+The CLI can also read:
+
+```text
+~/.codex/config.toml
+~/.codex/auth.json
+```
+
+Create example files:
 
 ```bash
 mkdir -p ~/.codex
@@ -35,14 +212,7 @@ cp config.toml.example ~/.codex/config.toml
 cp auth.json.example ~/.codex/auth.json
 ```
 
-然后编辑：
-
-```text
-~/.codex/config.toml
-~/.codex/auth.json
-```
-
-`config.toml` 里配置模型、base_url 和 wire_api：
+Example `config.toml`:
 
 ```toml
 model_provider = "suocode_com"
@@ -60,19 +230,7 @@ wire_api = "responses"
 requires_openai_auth = true
 ```
 
-脚本会请求：
-
-```text
-{base_url}/responses
-```
-
-如果你的网关实际接口是 `https://vip.zxyfedu.com/v1/responses`，就把 `base_url` 改成：
-
-```toml
-base_url = "https://vip.zxyfedu.com/v1"
-```
-
-`auth.json` 里配置 API key：
+Example `auth.json`:
 
 ```json
 {
@@ -80,61 +238,56 @@ base_url = "https://vip.zxyfedu.com/v1"
 }
 ```
 
-不要把真实 `auth.json` 提交到 GitHub。
+If both `.env` and Codex-style config exist, `.env` takes priority.
 
-### 方式 B：项目内 `.env`
+## Input Examples
 
-也可以创建项目自己的 `.env`：
+Full paper input:
 
-```bash
-cp .env.example .env
+```md
+Target audience: algorithm engineers / AI product managers
+Style: long-form Xiaohongshu paper explainer
+Length: around 800-1200 Chinese characters
+
+Paper link:
+https://arxiv.org/abs/xxxx.xxxxx
+
+Paper title:
+...
+
+Abstract:
+...
+
+Introduction / Conclusion / Results:
+...
 ```
 
-然后把 `.env` 里的 `OPENAI_API_KEY` 换成你的 API key。
+Link-only input:
 
-如果同时存在 `.env` 和 `~/.codex/config.toml`，脚本优先使用 `.env` 里的配置。
+```md
+Target audience: algorithm engineers / AI product managers
+Style: long-form Xiaohongshu paper explainer
 
-运行示例：
-
-```bash
-npm run generate -- examples/paper.md
+Paper link:
+https://arxiv.org/abs/xxxx.xxxxx
 ```
 
-也可以直接给论文链接，脚本会先抓取网页内容再生成：
+Recommended URL types:
 
-```bash
-npm run generate -- --url https://arxiv.org/abs/xxxx.xxxxx
-```
+- arXiv abstract pages
+- paper project pages
+- technical blog pages
+- HTML pages with abstracts and results
 
-或者在输入文件里写：
+PDF URLs are not automatically parsed. If you only have a PDF, paste the abstract, introduction, conclusion, or experiment results into the input file.
 
-```text
-论文链接：https://arxiv.org/abs/xxxx.xxxxx
-```
+## Safety Notes
 
-推荐使用 arXiv abstract 页、论文项目页、技术博客页。PDF 链接暂不自动解析；如果只有 PDF，请先复制摘要、Introduction、Conclusion 或实验结果到输入文件。
+- Do not commit `.env`, `auth.json`, `config.toml`, or real API keys.
+- Do not invent authors, institutions, benchmarks, metrics, code availability, or open-source status.
+- Do not claim AGI, consciousness, autonomous thinking, or real-world deployment readiness unless the paper explicitly supports it.
+- For benchmark results, preserve the task, dataset, and evaluation setting.
 
-也可以把结果保存到文件：
+## License
 
-```bash
-npm run generate -- examples/paper.md --out outputs/post.md
-```
-
-输入文件可以放论文标题、摘要、Introduction、Conclusion、实验结果，内容越完整，生成结果越稳。
-
-默认输出是一篇可直接发布的小红书长文案，而不是标题候选列表。模板大致是：
-
-```text
-[来源] 发了一篇 [方向] 的新论文：《标题》
-
-一句话概括：...
-
-🙋问题背景
-🐳论文做法
-🌟关键设计
-🍒论文结果
-⛰️产品/研究意义
-
-标签：
-封面文字：
-```
+MIT
