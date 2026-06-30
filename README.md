@@ -300,7 +300,3 @@ PDF URLs are not automatically parsed. If you only have a PDF, paste the abstrac
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Kwwwww74/xhs-paper-promotion&type=Date)](https://star-history.com/#Kwwwww74/xhs-paper-promotion&Date)
-
-## 📄 License
-
-MIT
