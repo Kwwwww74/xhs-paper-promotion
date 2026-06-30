@@ -1,6 +1,12 @@
+<div align="center">
+
 # xhs-paper-promotion
 
+**English** | [中文](./README.zh-CN.md)
+
 Turn AI / LLM / Agent / RAG / machine learning papers into Chinese Xiaohongshu-style paper explainer posts.
+
+</div>
 
 This project can be used in two ways:
 
