@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI论文小红书推广"
+  short_description: "把大模型和智能体论文转成可信的小红书推广文案与封面标题"
+  default_prompt: "Use $xhs-paper-promotion to turn this LLM or agent paper into a narrative Xiaohongshu paper-breakdown post with source/title, one-sentence summary, problem, method, key design, results, meaning, tags, and cover text."
+
+policy:
+  allow_implicit_invocation: true
