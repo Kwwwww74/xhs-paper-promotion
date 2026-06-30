@@ -1,10 +1,14 @@
 <div align="center">
 
-# xhs-paper-promotion
+# 🍠 xhs-paper-promotion
 
 **中文** | [English](./README.md)
 
 把 AI / LLM / Agent / RAG / 机器学习论文转换成适合小红书发布的中文论文拆解文案。
+
+[![GitHub stars](https://img.shields.io/github/stars/Kwwwww74/xhs-paper-promotion?style=social)](https://github.com/Kwwwww74/xhs-paper-promotion/stargazers)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
 </div>
 
@@ -13,7 +17,7 @@
 - 作为 Codex Skill 使用
 - 作为独立 Node.js CLI 工具使用，通过 OpenAI-compatible Responses API 生成内容
 
-## 功能特点
+## ✨ 功能特点
 
 - 生成小红书论文拆解长文案
 - 支持论文标题、摘要、Introduction、Conclusion、实验结果输入
@@ -23,7 +27,7 @@
 - 支持读取 `~/.codex/config.toml` 和 `~/.codex/auth.json`
 - 内置 AI 论文安全边界，避免夸大模型能力、AGI、真实部署效果或没有依据的 benchmark 结论
 
-## 默认输出风格
+## 📝 默认输出风格
 
 默认输出类似下面这种结构：
 
@@ -52,7 +56,7 @@
 副标题：...
 ```
 
-## 项目结构
+## 📁 项目结构
 
 ```text
 xhs-paper-promotion/
@@ -77,14 +81,14 @@ xhs-paper-promotion/
     └── generate-xhs.mjs
 ```
 
-## 环境要求
+## ⚙️ 环境要求
 
 - Node.js 18+
 - 一个支持 Responses API 的 OpenAI-compatible API key
 
 项目不需要额外安装 npm 依赖。
 
-## 作为 Codex Skill 使用
+## 🧩 作为 Codex Skill 使用
 
 把整个项目目录放到：
 
@@ -122,7 +126,7 @@ https://arxiv.org/abs/xxxx.xxxxx
 请生成小红书论文拆解文案。
 ```
 
-## 作为 CLI 使用
+## 🚀 作为 CLI 使用
 
 从输入文件生成：
 
@@ -167,7 +171,7 @@ node scripts/generate-xhs.mjs --url https://arxiv.org/abs/xxxx.xxxxx
 cat examples/paper.md | npm run generate
 ```
 
-## API 配置
+## 🔐 API 配置
 
 ### 方式 A：使用 `.env`
 
@@ -246,7 +250,7 @@ requires_openai_auth = true
 
 如果 `.env` 和 Codex 风格配置同时存在，脚本优先读取 `.env`。
 
-## 输入示例
+## 📌 输入示例
 
 完整输入：
 
@@ -287,13 +291,17 @@ https://arxiv.org/abs/xxxx.xxxxx
 
 PDF 链接暂不自动解析。如果你只有 PDF，建议把摘要、Introduction、Conclusion 或实验结果复制到输入文件里。
 
-## 安全提示
+## 🛡️ 安全提示
 
 - 不要提交 `.env`、`auth.json`、`config.toml` 或真实 API key。
 - 不要编造作者、机构、benchmark、指标、代码开源状态或模型发布状态。
 - 不要在论文没有明确支持的情况下写 AGI、意识、自主思考、真实部署可用等结论。
 - 写 benchmark 结果时，尽量保留任务、数据集和评测设置。
 
-## License
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Kwwwww74/xhs-paper-promotion&type=Date)](https://star-history.com/#Kwwwww74/xhs-paper-promotion&Date)
+
+## 📄 License
 
 MIT
